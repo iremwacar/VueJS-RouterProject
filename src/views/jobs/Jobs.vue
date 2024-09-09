@@ -12,12 +12,14 @@ export default {
   props: ['id'],
     data(){
         return{
-            jobs:[
-                {title: 'Designer', id: 1 , details:'lorem'},
-                {title: 'Devoloper', id: 2 , details:'lorem'},
-                {title: 'Intern', id: 3 , details:'lorem'}
-            ]
+            jobs:[]
         }
+    },
+    mounted(){
+      fetch('http://localhost:3000/jobs')
+      .then((res)=>res.json())
+      .then(data => data.jobs = data)
+      .catch(err=>console.log(err.message))
     }
 }
 </script>
